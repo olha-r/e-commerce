@@ -19,18 +19,27 @@ class CategoryFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $categories = [
-            1 => 'chaises',
-            2 => 'tables',
-            3 => 'lits'
+            1 => [
+                'name' => 'chaises'
+            ],
+            2 => [
+                'name' => 'tables'
+            ],
+            3 => [
+                'name' => 'lits'
+            ],
         ];
 
-        for ($c = 1; $c < 4; $c++) {
+        foreach ($categories as $key => $value) {
             $category = new Category();
             $category
-                ->setName($categories[$c])
+                ->setName($value['name'])
                 ->setSlug(strtolower($this->slugger->slug($category->getName())));
             $manager->persist($category);
+            $this->addReference('category_' . $key, $category);
         }
         $manager->flush();
+
     }
+
 }
