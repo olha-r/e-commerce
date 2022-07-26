@@ -18,7 +18,7 @@
                         <span class="badge bg-secondary">{{ product.category.name }}</span>
 
                         <p class="card-text">{{ product.shortDescription }}</p>
-                        <a href="#" class="btn btn-primary btn-sm">Detail</a>
+                        <a href="{{ path('product_show', {'slug_category': product.category.slug, 'slug': product.slug }) }}" class="btn btn-primary btn-sm">Detail</a>
                         <a href="#" class="btn btn-success btn-sm">Ajouter</a>
                     </div>
                 </div>
